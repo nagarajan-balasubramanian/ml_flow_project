@@ -3,6 +3,7 @@ import sys
 from mlflow_project import logger
 import yaml
 from pathlib import Path
+from box import ConfigBox
 
 def read_yaml(yamlfilepath:Path):
     '''
@@ -16,9 +17,12 @@ def read_yaml(yamlfilepath:Path):
 
     '''
     try:
+        print(yamlfilepath)
         with open(yamlfilepath) as yaml_file:
             yaml_content =yaml.safe_load(yaml_file)
+            # print(type(yaml_content))
             logger.info('Yaml file {yamlfilepath} Read Successfully')
+            return yaml_content
     except Exception as e:
         raise e
 
@@ -35,5 +39,14 @@ def create_directories(directorypath:list, verbose = True):
         if verbose:
             logger.info(f'Directory created at: {directorypath}')
 
+def get_size(path: Path) -> str:
+    """get size in KB
 
+    Args:
+        path (Path): path of the file
 
+    Returns:
+        str: size in KB
+    """
+    size_in_kb = round(os.path.getsize(path)/1024)
+    return f"~ {size_in_kb} KB"
