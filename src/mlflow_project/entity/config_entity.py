@@ -7,3 +7,15 @@ class DataIngestionConfig:
     source_url:str
     local_file:Path
     unzip_dir:Path
+
+@dataclass
+class DataValidationConfig:
+    root_dir:Path
+    STATUS_FILE:str
+    unzip_dir:Path
+    all_schema:dict
+
+@dataclass
+class DataTransformationConfig:
+    root_dir:Path
+    data_dir:Path
