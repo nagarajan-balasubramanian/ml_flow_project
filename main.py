@@ -3,6 +3,7 @@ from mlflow_project.pipeline.stage_01_data_ingestion import DataIngestionPipelin
 from mlflow_project.pipeline.stage_02_data_validation import DataValidationPipeline
 from mlflow_project.pipeline.stage_03_data_transformation import DataTransformationPipeline
 from mlflow_project.pipeline.stage_04_model_training import ModelTrainingPipeline
+from mlflow_project.pipeline.satge05_model_evaluation import ModelEvaluationPipeline
 
 logger.info('Welcome to the Second logging')
 
@@ -37,4 +38,12 @@ try:
 except Exception as e:
     logger.exception(e)
 
+
+logger.info('Welcome to the Sixth logging')
+
+try:
+    model_evaluation = ModelEvaluationPipeline()
+    model_evaluation.main()
+except Exception as e:
+    logger.exception(e)
 

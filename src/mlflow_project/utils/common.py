@@ -4,6 +4,7 @@ from mlflow_project import logger
 import yaml
 from pathlib import Path
 from box import ConfigBox
+import json
 
 def read_yaml(yamlfilepath:Path):
     '''
@@ -50,3 +51,22 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+
+def save_json(path: Path, data:dict) :
+    """save the json file in the path
+
+    Args:
+        path (Path): path of the file
+        data : json contents
+
+    Returns:
+        None
+    """
+    try:
+        with open(path, "w") as F:
+            json.dump(data, F,indent=4)
+        logger.info("JSON file saved successfully: {path}")
+    except Exception as e:
+        raise e
+    return None

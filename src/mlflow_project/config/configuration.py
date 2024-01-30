@@ -69,3 +69,20 @@ class ConfigurationManager:
                         target_column=target_column)
 
                   return model_training_config
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+                  config= self.config['model_evaluation']
+                  #print(config['unzip_data_dir'])
+                  target_column= self.schema['TARGET_COLUMN']
+                  create_directories([config['root_dir']])
+                  params=self.params['ElasticNet']
+
+                  model_evaluation_config = ModelEvaluationConfig(
+                        root_dir =config['root_dir'],
+                        test_data = config['test_data'],
+                        model_name = config['model_path'],
+                        metric_file=config['metric_file'],
+                        all_params=params,
+                        target_column=target_column)
+
+                  return model_evaluation_config

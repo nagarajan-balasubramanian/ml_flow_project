@@ -30,3 +30,13 @@ class ModelTrainingConfig:
     alpha : float
     l1_ratio : float
     target_column :str
+
+
+@dataclass
+class ModelEvaluationConfig:
+    root_dir:Path
+    test_data: Path
+    model_name: Path
+    metric_file :Path
+    all_params : dict
+    target_column :str
